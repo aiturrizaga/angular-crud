@@ -1,4 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main-container {
+    background-color: oklch(0.968 0.007 247.896);
+    border-radius: 0.75rem;
+    margin: 1rem 1rem 1rem 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid oklch(92.8% 0.006 264.531);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.p-4 {
+    padding: 1rem
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+.delete-button {
+    color: oklch(50.5% 0.213 27.518) !important;
+}
+
+.delete-button:hover {
+    background-color: oklch(93.6% 0.032 17.717) !important;
+}
+
+// Mat table
+:root {
+    @include mat.table-overrides((background-color: #ffffff,
+            row-item-outline-color: #eeeef1,
+            header-headline-size: 12px));
+}
+
+
+.mat-mdc-table {
+    border-bottom: 1px solid #EEEEF1 !important;
+
+    .mat-mdc-header-cell {
+        text-transform: uppercase;
+    }
+
+    .mat-mdc-row {
+        cursor: pointer;
+        transition: background-color 0.1s ease;
+    }
+
+    .mat-mdc-row:hover {
+        background-color: oklch(96.8% 0.007 247.896) !important;
+    }
+
+}

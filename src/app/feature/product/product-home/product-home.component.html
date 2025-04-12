@@ -1,45 +1,66 @@
-<button type="button" mat-flat-button (click)="openProductDlg()">Nuevo producto</button>
+<div class="flex justify-between p-4">
+    <div class="flex justify-center items-center">
+        <button type="button" mat-icon-button>
+            <mat-icon>filter_list</mat-icon>
+        </button>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <input type="text" placeholder="Buscar producto" style="padding: 0.5rem;">
+    </div>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+    <button type="button" mat-flat-button (click)="openProductDlg()">
+        <mat-icon>add</mat-icon>
+        Nuevo producto
+    </button>
+</div>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+<div class="w-full overflow-x-auto">
+    <table mat-table [dataSource]="dataSource">
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Descripción </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <img [src]="element.imageUrl" alt="Product image" height="32" width="32">
+            </td>
+        </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="currency">
-        <th mat-header-cell *matHeaderCellDef> Moneda </th>
-        <td mat-cell *matCellDef="let element"> {{element.currencyCode}} </td>
-    </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Precio </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-    </ng-container>
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="estado">
-        <th mat-header-cell *matHeaderCellDef> Estado </th>
-        <td mat-cell *matCellDef="let element"> {{element.active ? 'Activo' : 'Inactivo'}} </td>
-    </ng-container>
+        <!-- Currency Column -->
+        <ng-container matColumnDef="currency">
+            <th mat-header-cell *matHeaderCellDef> Moneda </th>
+            <td mat-cell *matCellDef="let element"> {{element.currencyCode}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let element">
-            <button type="button" mat-button (click)="inactiveProduct(element.id)">Eliminar</button>
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openProductDlg(row)"></tr>
-</table>
+        <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element">
+                <button type="button" mat-button class="delete-button"
+                    (click)="inactiveProduct(element.id)">Eliminar</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;" (dblclick)="openProductDlg(row)"></tr>
+    </table>
+</div>

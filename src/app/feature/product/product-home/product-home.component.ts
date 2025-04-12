@@ -6,18 +6,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveProductDlgComponent } from '../save-product-dlg/save-product-dlg.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-product-home',
   imports: [
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   templateUrl: './product-home.component.html',
   styleUrl: './product-home.component.scss'
 })
 export class ProductHomeComponent implements OnInit {
-  displayedColumns: string[] = ['nombre', 'description', 'currency', 'price', 'estado', 'action'];
+  columns: string[] = ['image', 'name', 'description', 'currency', 'price', 'state', 'action'];
   dataSource: Product[] = [];
 
   productService = inject(ProductService);

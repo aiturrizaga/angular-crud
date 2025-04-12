@@ -1,29 +1,29 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Sis Ventas</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Productos</a>
-      <a mat-list-item href="#">Clientes</a>
-      <a mat-list-item href="#">Ventas</a>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <img src="https://www.websmultimedia.com/style/img/trabajos/logotipo-areco.jpg" alt="Logo" height="70">
+    </mat-toolbar>
+    <mat-nav-list style="padding: 1rem;">
+      <a mat-list-item routerLink="products" routerLinkActive #link="routerLinkActive" [activated]="link.isActive">
+        Productos
+      </a>
+      <a mat-list-item routerLink="">Clientes</a>
+      <a mat-list-item routerLink="">Ventas</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       @if (isHandset$ | async) {
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
       }
       <span>Productos</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-     <router-outlet/>
+    <div class="main-container">
+      <router-outlet />
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
