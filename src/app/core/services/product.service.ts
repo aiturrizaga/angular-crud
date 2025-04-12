@@ -11,7 +11,7 @@ export class ProductService {
   private http = inject(HttpClient);
 
   getAll() {
-    return this.http.get<ApiResponse<Product[]>>(`${environment.api}/v1/products`);
+    return this.http.get<ApiResponse<Product[]>>(`${environment.api}/v1/products?active=true`);
   }
 
   create(request: SaveProduct) {
@@ -20,6 +20,10 @@ export class ProductService {
 
   update(id: number, request: SaveProduct) {
     return this.http.put<ApiResponse<Product>>(`${environment.api}/v1/products/${id}`, request);
+  }
+
+  inactive(id: number) {
+    return this.http.delete<ApiResponse<any>>(`${environment.api}/v1/products/${id}/inactive`);
   }
 
 }

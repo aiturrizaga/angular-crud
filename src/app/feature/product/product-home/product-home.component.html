@@ -33,6 +33,13 @@
         <td mat-cell *matCellDef="let element"> {{element.active ? 'Activo' : 'Inactivo'}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+            <button type="button" mat-button (click)="inactiveProduct(element.id)">Eliminar</button>
+        </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openProductDlg(row)"></tr>
 </table>

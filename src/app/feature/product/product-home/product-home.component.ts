@@ -5,6 +5,7 @@ import { Product } from '../../../core/interfaces/product';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveProductDlgComponent } from '../save-product-dlg/save-product-dlg.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-home',
@@ -16,11 +17,12 @@ import { SaveProductDlgComponent } from '../save-product-dlg/save-product-dlg.co
   styleUrl: './product-home.component.scss'
 })
 export class ProductHomeComponent implements OnInit {
-  displayedColumns: string[] = ['nombre', 'description', 'currency', 'price', 'estado'];
+  displayedColumns: string[] = ['nombre', 'description', 'currency', 'price', 'estado', 'action'];
   dataSource: Product[] = [];
 
   productService = inject(ProductService);
   private dialog = inject(MatDialog);
+  private snackbar = inject(MatSnackBar);
 
   ngOnInit(): void {
     this.getAll();
@@ -44,6 +46,15 @@ export class ProductHomeComponent implements OnInit {
         this.getAll();
       }
     });
+  }
+
+  inactiveProduct(id: number) {
+    this.productService.inactive(id).subscribe(res => {
+      if (res.status) {
+        this.getAll();
+        this.snackbar.open('Se inactivo el producto', 'Aceptar');
+      }
+    })
   }
 
 }
