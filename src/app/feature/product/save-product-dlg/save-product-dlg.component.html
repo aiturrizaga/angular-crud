@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Nuevo producto</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="productForm" style="display: flex; flex-direction: column;">
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <input matInput formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Imagen</mat-label>
+            <input matInput formControlName="imageUrl">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="currencyCode">
+                <mat-option value="PEN">Soles</mat-option>
+                <mat-option value="USD">Dolares</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Precio</mat-label>
+            <input matInput formControlName="price">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveProduct()">Guardar producto</button>
+</mat-dialog-actions>

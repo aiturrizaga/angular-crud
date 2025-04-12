@@ -3,6 +3,8 @@ import { MatTableModule } from '@angular/material/table';
 import { ProductService } from '../../../core/services/product.service';
 import { Product } from '../../../core/interfaces/product';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveProductDlgComponent } from '../save-product-dlg/save-product-dlg.component';
 
 @Component({
   selector: 'app-product-home',
@@ -18,6 +20,7 @@ export class ProductHomeComponent implements OnInit {
   dataSource: Product[] = [];
 
   productService = inject(ProductService);
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.getAll();
@@ -29,4 +32,17 @@ export class ProductHomeComponent implements OnInit {
       this.dataSource = res.data;
     })
   }
+
+  openProductDlg(): void {
+    const dialogRef = this.dialog.open(SaveProductDlgComponent, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.getAll();
+      }
+    });
+  }
+
 }
