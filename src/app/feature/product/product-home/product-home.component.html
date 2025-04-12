@@ -1,3 +1,5 @@
+<button type="button" mat-flat-button>Nuevo producto</button>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -10,20 +12,20 @@
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="sku">
-        <th mat-header-cell *matHeaderCellDef> SKU </th>
-        <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="categoria">
-        <th mat-header-cell *matHeaderCellDef> Categoria </th>
-        <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+    <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef> Moneda </th>
+        <td mat-cell *matCellDef="let element"> {{element.currencyCode}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="subcategoria">
-        <th mat-header-cell *matHeaderCellDef> Sub categoria </th>
-        <td mat-cell *matCellDef="let element"> {{element.subGroup}} </td>
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
     </ng-container>
 
     <ng-container matColumnDef="estado">

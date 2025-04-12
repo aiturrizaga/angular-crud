@@ -2,15 +2,19 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { ProductService } from '../../../core/services/product.service';
 import { Product } from '../../../core/interfaces/product';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-home',
-  imports: [MatTableModule],
+  imports: [
+    MatTableModule,
+    MatButtonModule
+  ],
   templateUrl: './product-home.component.html',
   styleUrl: './product-home.component.scss'
 })
 export class ProductHomeComponent implements OnInit {
-  displayedColumns: string[] = ['nombre', 'sku', 'categoria', 'subcategoria', 'estado'];
+  displayedColumns: string[] = ['nombre', 'description', 'currency', 'price', 'estado'];
   dataSource: Product[] = [];
 
   productService = inject(ProductService);
