@@ -1,11 +1,9 @@
 export interface Product {
     id: number;
     name: string;
-    sku: string;
-    icon: string;
-    group: string;
-    subGroup: string;
-    type: number;
+    imageUrl: string;
+    currencyCode: string;
+    price: number;
     state: number;
     active: boolean;
 }
@@ -15,5 +13,5 @@ export interface SaveProduct {
     description: string;
     imageUrl: string;
     currencyCode: string;
-    price: string;
+    price: number;
 }

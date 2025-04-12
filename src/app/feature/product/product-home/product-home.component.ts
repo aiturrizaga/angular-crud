@@ -33,9 +33,10 @@ export class ProductHomeComponent implements OnInit {
     })
   }
 
-  openProductDlg(): void {
+  openProductDlg(product?: Product): void {
     const dialogRef = this.dialog.open(SaveProductDlgComponent, {
-      width: '500px'
+      width: '500px',
+      data: product
     });
 
     dialogRef.afterClosed().subscribe(res => {

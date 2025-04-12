@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Nuevo producto</h2>
+<h2 mat-dialog-title>{{data ? 'Actualizar producto': 'Nuevo producto'}}</h2>
 
 <mat-dialog-content>
     <form [formGroup]="productForm" style="display: flex; flex-direction: column;">
@@ -34,5 +34,7 @@
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveProduct()">Guardar producto</button>
+    <button mat-button cdkFocusInitial (click)="saveProduct()">
+        {{data ? 'Actualizar producto': 'Guardar producto'}}
+    </button>
 </mat-dialog-actions>

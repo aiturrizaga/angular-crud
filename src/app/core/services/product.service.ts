@@ -18,4 +18,8 @@ export class ProductService {
     return this.http.post<ApiResponse<Product>>(`${environment.api}/v1/products`, request);
   }
 
+  update(id: number, request: SaveProduct) {
+    return this.http.put<ApiResponse<Product>>(`${environment.api}/v1/products/${id}`, request);
+  }
+
 }
