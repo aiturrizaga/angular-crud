@@ -28,8 +28,12 @@ export class OrderHomeComponent implements OnInit {
     this.getOrders();
   }
 
-  navigateSaveOrder(): void {
-    this.router.navigate(['save'], {relativeTo: this.route}).then();
+  navigateSaveOrder(row?: Order): void {
+    const orderId = row?.id || 'save';
+    if (row && orderId !== 'save') {
+      this.orderService.selectedOrder = row;
+    }
+    this.router.navigate([orderId], {relativeTo: this.route}).then();
   }
 
   private getOrders(): void {

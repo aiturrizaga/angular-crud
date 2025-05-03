@@ -23,7 +23,7 @@ export const routes: Routes = [
                 component: OrderHomeComponent
             },
             {
-                path: 'orders/save',
+                path: 'orders/:id',
                 component: SaveOrderComponent
             },
             {

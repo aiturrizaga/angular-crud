@@ -18,3 +18,8 @@ export interface OrderDetail {
     productPrice: number;
     total: number;
 }
+
+export interface SaveOrder {
+    customerId: number;
+    saleDate: Date;
+}
