@@ -1,4 +1,4 @@
-export enum DocumentType {
+export enum CustomerDocType {
     DNI = 'DNI',
     RUC = 'RUC'
 }
@@ -7,7 +7,7 @@ export interface Customer {
     id: number;
     name: string;
     lastname: string;
-    documentType: DocumentType;
+    documentType: CustomerDocType;
     documentNumber: string;
     active: boolean;
 }

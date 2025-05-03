@@ -1,1 +1,35 @@
-<p>save-customer-dlg works!</p>
+<h2 mat-dialog-title>{{data ? 'Actualizar cliente': 'Nuevo cliente'}}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="customerForm" class="flex flex-col">
+        <mat-form-field>
+            <mat-label>Nombres</mat-label>
+            <input type="text" matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Apellidos</mat-label>
+            <input type="text" matInput formControlName="lastname">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select formControlName="documentType">
+                <mat-option [value]="documentType.DNI">DNI</mat-option>
+                <mat-option [value]="documentType.RUC">RUC</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Número de documento</mat-label>
+            <input type="text" matInput formControlName="documentNumber">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-flat-button cdkFocusInitial (click)="saveCustomer()">
+        {{data ? 'Actualizar cliente': 'Guardar cliente'}}
+    </button>
+</mat-dialog-actions>
