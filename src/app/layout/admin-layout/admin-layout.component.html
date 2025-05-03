@@ -5,10 +5,12 @@
       <img src="https://www.websmultimedia.com/style/img/trabajos/logotipo-areco.jpg" alt="Logo" height="70">
     </mat-toolbar>
     <mat-nav-list style="padding: 1rem;">
-      <a mat-list-item routerLink="products" routerLinkActive #link="routerLinkActive" [activated]="link.isActive">
+      <a mat-list-item routerLink="products" routerLinkActive #productLink="routerLinkActive" [activated]="productLink.isActive">
         Productos
       </a>
-      <a mat-list-item routerLink="">Clientes</a>
+      <a mat-list-item routerLink="customers" routerLinkActive #customerLink="routerLinkActive" [activated]="customerLink.isActive">
+        Clientes
+      </a>
       <a mat-list-item routerLink="">Ventas</a>
     </mat-nav-list>
   </mat-sidenav>
