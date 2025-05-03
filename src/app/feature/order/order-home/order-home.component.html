@@ -1,0 +1,39 @@
+<div class="flex justify-between p-4">
+    <button type="button" mat-flat-button (click)="navigateSaveOrder()">
+        <mat-icon>add</mat-icon>
+        Nueva venta
+    </button>
+</div>
+
+<div class="w-full overflow-x-auto">
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.customer.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="saleDate">
+            <th mat-header-cell *matHeaderCellDef> F. Venta </th>
+            <td mat-cell *matCellDef="let element"> {{element.saleDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+</div>

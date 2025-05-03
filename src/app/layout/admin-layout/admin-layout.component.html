@@ -11,7 +11,9 @@
       <a mat-list-item routerLink="customers" routerLinkActive #customerLink="routerLinkActive" [activated]="customerLink.isActive">
         Clientes
       </a>
-      <a mat-list-item routerLink="">Ventas</a>
+      <a mat-list-item routerLink="orders" routerLinkActive #orderLink="routerLinkActive" [activated]="orderLink.isActive">
+        Ventas
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
