@@ -9,11 +9,23 @@
                     <mat-option [value]="product">{{product.name}}</mat-option>
                 }
             </mat-select>
+
+            @if (formValidator.hasError('product')) {
+                <mat-error>
+                    {{formValidator.getErrorMessage('product')}}
+                </mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Cantidad</mat-label>
             <input matInput type="number" formControlName="quantity">
+
+            @if (formValidator.hasError('quantity')) {
+                <mat-error>
+                    {{formValidator.getErrorMessage('quantity')}}
+                </mat-error>
+            }
         </mat-form-field>
     </form>
 </mat-dialog-content>

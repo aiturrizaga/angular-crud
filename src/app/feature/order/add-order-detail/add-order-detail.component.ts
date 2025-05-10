@@ -10,6 +10,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { OrderService } from '../../../core/services/order.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Order } from '../../../core/interfaces/order';
+import { FormValidator } from '../../../shared/utils/form-validator.util';
+
+const CUSTOM_ERROR_MESSAGES = {
+  product: {
+    required: 'Selecciona el producto'
+  },
+  quantity: {
+    required: 'Ingrese la cantidad'
+  }
+}
 
 @Component({
   selector: 'app-add-order-detail',
@@ -28,6 +38,7 @@ export class AddOrderDetailComponent implements OnInit {
   productService = inject(ProductService);
   products: Product[] = [];
   form!: FormGroup;
+  formValidator!: FormValidator;
   data = inject<{orderId: number}>(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
   private dialogRef = inject(MatDialogRef<AddOrderDetailComponent>);
@@ -48,7 +59,11 @@ export class AddOrderDetailComponent implements OnInit {
   }
 
   save(): void {
-    console.log('Form:', this.form.value);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.orderService.addDetail(this.data.orderId, this.form.value).subscribe(res => {
       if (res && res.data) {
         this.snackbar.open('Se agrego el producto', 'Cerrar', {duration: 2000});
@@ -62,6 +77,8 @@ export class AddOrderDetailComponent implements OnInit {
       product: [null, [Validators.required]],
       quantity: [1, [Validators.required, Validators.min(1), Validators.max(100)]]
     });
+
+    this.formValidator = new FormValidator(this.form, CUSTOM_ERROR_MESSAGES);
   }
 
   closeDlg(res?: Order) {
