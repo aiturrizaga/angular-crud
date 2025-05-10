@@ -12,18 +12,22 @@ export const routes: Routes = [
         children: [
             {
                 path: 'products',
+                title: 'Productos',
                 component: ProductHomeComponent
             },
             {
                 path: 'customers',
+                title: 'Clientes',
                 component: CustomerHomeComponent
             },
             {
                 path: 'orders',
+                title: 'Ventas',
                 component: OrderHomeComponent
             },
             {
                 path: 'orders/:id',
+                title: 'Detalle de venta',
                 component: SaveOrderComponent
             },
             {
