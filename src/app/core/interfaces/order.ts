@@ -23,3 +23,8 @@ export interface SaveOrder {
     customerId: number;
     saleDate: Date;
 }
+
+export interface SaveOrderDetail {
+    product: Product;
+    quantity: number;
+}

@@ -1,1 +1,24 @@
-<p>add-order-detail works!</p>
+<h2 mat-dialog-title>Agregar detalle</h2>
+
+<mat-dialog-content>
+    <form class="flex flex-col" [formGroup]="form">
+        <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="product">
+                @for (product of products; track product.id) {
+                    <mat-option [value]="product">{{product.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" formControlName="quantity">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button type="button" (click)="closeDlg()">Cancelar</button>
+    <button mat-flat-button type="button" (click)="save()">Agregar</button>
+</mat-dialog-actions>

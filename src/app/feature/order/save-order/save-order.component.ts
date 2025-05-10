@@ -47,6 +47,7 @@ export class SaveOrderComponent implements OnInit {
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
+      this.getOrderDetails();
     });
   }
 
@@ -59,7 +60,25 @@ export class SaveOrderComponent implements OnInit {
   }
 
   openAddDetailDlg(): void {
-    this.dialog.open(AddOrderDetailComponent);
+    const dialogRef = this.dialog.open(AddOrderDetailComponent, {
+      data: {
+        orderId: this.id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.getOrderDetails();
+      }
+    })
+  }
+
+  private getOrderDetails(): void {
+    this.orderService.getById(this.id).subscribe(res => {
+      if (res && res.data) {
+        this.orderDetails = res.data.details;
+      }
+    })
   }
 
   private getCustomers(): void {
