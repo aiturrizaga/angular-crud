@@ -27,4 +27,8 @@ export class OrderService {
     return this.http.post<ApiResponse<Order>>(`${environment.api}/v1/orders/${orderId}/details`, request);
   }
 
+  removeDetail(orderId: number, detailId: number) {
+    return this.http.delete<ApiResponse<Order>>(`${environment.api}/v1/orders/${orderId}/details/${detailId}`);
+  }
+
 }

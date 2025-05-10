@@ -63,7 +63,7 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Acciones </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-button>
+                        <button mat-button (click)="removeDetail(element.id)">
                             Eliminar
                         </button>
                     </td>
@@ -72,6 +72,10 @@
                 <tr mat-header-row *matHeaderRowDef="columns"></tr>
                 <tr mat-row *matRowDef="let row; columns: columns;"></tr>
             </table>
+        </div>
+
+        <div>
+            <h3>TOTAL: S/ {{totalAmount}}</h3>
         </div>
     </div>
 </div>

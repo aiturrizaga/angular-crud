@@ -32,6 +32,7 @@ export class SaveOrderComponent implements OnInit {
   id: any;
   customers: Customer[] = [];
   orderDetails: OrderDetail[] = [];
+  totalAmount: number = 0;
   columns: string[] = ['id', 'product', 'quantity', 'price', 'total', 'action'];
   orderForm = new FormGroup<any>({});
   private fb = inject(FormBuilder);
@@ -73,10 +74,19 @@ export class SaveOrderComponent implements OnInit {
     })
   }
 
+  removeDetail(detailId: number): void {
+    this.orderService.removeDetail(this.id, detailId).subscribe(res => {
+      if (res && res.data) {
+        this.getOrderDetails();
+      }
+    })
+  }
+
   private getOrderDetails(): void {
     this.orderService.getById(this.id).subscribe(res => {
       if (res && res.data) {
         this.orderDetails = res.data.details;
+        this.totalAmount = res.data.totalAmount;
       }
     })
   }
