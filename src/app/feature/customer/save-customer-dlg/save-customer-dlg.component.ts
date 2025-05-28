@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CustomerService } from '../../../core/services/customer.service';
 import { CustomerDocType } from '../../../core/interfaces/customer';
+import { FormValidator } from '../../../shared/utils/form-validator.util';
 
 @Component({
   selector: 'app-save-customer-dlg',
@@ -23,6 +24,7 @@ import { CustomerDocType } from '../../../core/interfaces/customer';
 })
 export class SaveCustomerDlgComponent {
   customerForm = new FormGroup<any>({});
+  formValidator!: FormValidator;
   private fb = inject(FormBuilder);
   private customerService = inject(CustomerService);
   private dialogRef = inject(MatDialogRef<SaveCustomerDlgComponent>)
@@ -63,6 +65,8 @@ export class SaveCustomerDlgComponent {
       documentType: [CustomerDocType.DNI, [Validators.required]],
       documentNumber: ['', [Validators.required]]
     });
+
+    this.formValidator = new FormValidator(this.customerForm);
 
     if (this.data) {
       this.customerForm.patchValue(this.data);

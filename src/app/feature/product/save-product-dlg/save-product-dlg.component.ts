@@ -6,11 +6,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductService } from '../../../core/services/product.service';
+import { FormValidator } from '../../../shared/utils/form-validator.util';
 
 @Component({
   selector: 'app-save-product-dlg',
   imports: [
-    MatDialogModule,
+  MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -22,6 +23,7 @@ import { ProductService } from '../../../core/services/product.service';
 })
 export class SaveProductDlgComponent implements OnInit {
   productForm = new FormGroup<any>({});
+  formValidator!: FormValidator;
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
   private dialogRef = inject(MatDialogRef<SaveProductDlgComponent>)
@@ -61,6 +63,8 @@ export class SaveProductDlgComponent implements OnInit {
       currencyCode: ['PEN', [Validators.required]],
       price: [0, [Validators.required]]
     });
+
+    this.formValidator = new FormValidator(this.productForm);
 
     if (this.data) {
       this.productForm.patchValue(this.data);
