@@ -5,13 +5,16 @@
       <img src="https://www.websmultimedia.com/style/img/trabajos/logotipo-areco.jpg" alt="Logo" height="70">
     </mat-toolbar>
     <mat-nav-list style="padding: 1rem;">
-      <a mat-list-item routerLink="products" routerLinkActive #productLink="routerLinkActive" [activated]="productLink.isActive">
+      <a mat-list-item routerLink="products" routerLinkActive #productLink="routerLinkActive"
+        [activated]="productLink.isActive">
         Productos
       </a>
-      <a mat-list-item routerLink="customers" routerLinkActive #customerLink="routerLinkActive" [activated]="customerLink.isActive">
+      <a mat-list-item routerLink="customers" routerLinkActive #customerLink="routerLinkActive"
+        [activated]="customerLink.isActive">
         Clientes
       </a>
-      <a mat-list-item routerLink="orders" routerLinkActive #orderLink="routerLinkActive" [activated]="orderLink.isActive">
+      <a mat-list-item routerLink="orders" routerLinkActive #orderLink="routerLinkActive"
+        [activated]="orderLink.isActive">
         Ventas
       </a>
     </mat-nav-list>
@@ -23,7 +26,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
-      <span>Administración</span>
+      <span style="flex: 1 1 auto;">Administración</span>
+      <button mat-button [matMenuTriggerFor]="menu">{{authService.user?.email}}</button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="main-container">
@@ -31,3 +35,7 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+</mat-menu>

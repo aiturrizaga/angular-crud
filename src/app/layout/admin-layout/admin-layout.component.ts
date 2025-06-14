@@ -8,7 +8,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -23,15 +25,23 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     AsyncPipe,
     RouterOutlet,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatMenuModule
   ]
 })
 export class AdminLayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  private router = inject(Router);
+  authService = inject(AuthService);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/auth');
+  }
 }

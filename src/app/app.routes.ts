@@ -4,10 +4,15 @@ import { ProductHomeComponent } from './feature/product/product-home/product-hom
 import { CustomerHomeComponent } from './feature/customer/customer-home/customer-home.component';
 import { OrderHomeComponent } from './feature/order/order-home/order-home.component';
 import { SaveOrderComponent } from './feature/order/save-order/save-order.component';
+import { LoginComponent } from './feature/auth/login/login.component';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'auth',
+        component: LoginComponent
+    },
+    {
+        path: 'console',
         component: AdminLayoutComponent,
         children: [
             {
@@ -30,11 +35,11 @@ export const routes: Routes = [
                 title: 'Detalle de venta',
                 component: SaveOrderComponent
             },
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'products'
-            }
         ]
+    },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'auth'
     }
 ];
