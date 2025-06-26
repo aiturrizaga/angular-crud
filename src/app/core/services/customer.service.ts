@@ -10,15 +10,23 @@ import { environment } from '../../../environments/environment';
 export class CustomerService {
   private http = inject(HttpClient);
 
-    getAll() {
-      return this.http.get<ApiResponse<Customer[]>>(`${environment.api}/v1/customers?active=true`);
-    }
-  
-    create(request: SaveCustomer) {
-      return this.http.post<ApiResponse<Customer>>(`${environment.api}/v1/customers`, request);
-    }
-  
-    update(id: number, request: SaveCustomer) {
-      return this.http.put<ApiResponse<Customer>>(`${environment.api}/v1/customers/${id}`, request);
-    }
+  getAll() {
+    return this.http.get<ApiResponse<Customer[]>>(`${environment.api}/v1/customers?active=true`);
+  }
+
+  create(request: SaveCustomer) {
+    return this.http.post<ApiResponse<Customer>>(`${environment.api}/v1/customers`, request);
+  }
+
+  update(id: number, request: SaveCustomer) {
+    return this.http.put<ApiResponse<Customer>>(`${environment.api}/v1/customers/${id}`, request);
+  }
+
+  downloadReport() {
+    return this.http.get('http://localhost:8085/v1/api/customer/pdf', {
+      responseType: 'blob',
+      observe: 'response'
+    })
+  }
+
 }

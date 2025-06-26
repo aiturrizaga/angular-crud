@@ -47,4 +47,26 @@ export class CustomerHomeComponent {
       }
     });
   }
+
+  downloadReport() {
+    this.customerService.downloadReport().subscribe(res => {
+      const blob = new Blob([res.body!], { type: res.body?.type });
+      const contentDisposition = res.headers.get('Content-Disposition');
+      let fileName = 'nombre_de_archivo';
+
+      if (contentDisposition) {
+        const matches = /filename="?([^"]+)"?/.exec(contentDisposition);
+        if (matches?.[1]) {
+          fileName = matches[1];
+        }
+      }
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    })
+  }
+
 }

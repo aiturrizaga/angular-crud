@@ -1,4 +1,9 @@
-<div class="flex justify-between p-4">
+<div class="flex justify-end p-4">
+<button type="button" mat-stroked-button (click)="downloadReport()">
+        <mat-icon>download</mat-icon>
+        Descargar reporte
+    </button>
+
     <button type="button" mat-flat-button (click)="openCustomerDlg()">
         <mat-icon>add</mat-icon>
         Nuevo cliente
