@@ -27,7 +27,10 @@
       </button>
       }
       <span style="flex: 1 1 auto;">Administración</span>
-      <button mat-button [matMenuTriggerFor]="menu">{{authService.user?.email}}</button>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        {{authService.user?.email}}
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="main-container">

@@ -6,8 +6,10 @@ export interface Login {
 export interface User {
     id: number;
     email: string;
-    password: string;
     role: string;
+}
+
+export interface AuthResponse {
     accessToken: string;
     expiresIn: number;
 }
