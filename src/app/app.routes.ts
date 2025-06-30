@@ -35,6 +35,11 @@ export const routes: Routes = [
                 title: 'Detalle de venta',
                 component: SaveOrderComponent
             },
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'products'
+            }
         ]
     },
     {
